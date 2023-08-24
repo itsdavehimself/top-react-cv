@@ -1,0 +1,40 @@
+.App {
+  display: grid;
+  margin: 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+h2 {
+  margin: 0;
+}
+
+.user-forms {
+  display: grid;
+  align-items: center;
+  height: auto;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.education {
+  height: 200px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.employment {
+  height: 200px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.cv-display {
+  height: 800px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
