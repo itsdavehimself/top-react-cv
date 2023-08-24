@@ -1,16 +1,12 @@
-import PersonalInfo from './personal-info'
-import Education from './education'
-import Employment from './employment'
 import DisplayCV from './cv'
+import Accordion from './input-component'
 import './App.css'
 
 function App() {
   return (
     <div className='App'>
       <div className='user-forms'>
-        <PersonalInfo />
-        <Education />
-        <Employment />
+      <Accordion />
       </div>
       <div className='cv-display'>
         <DisplayCV />
