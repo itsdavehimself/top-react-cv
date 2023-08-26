@@ -17,7 +17,8 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
   }
 
   function handlePhoneChange(e) {
-    setPhoneValue(e.target.value);
+    const formattedPhoneNumber = formatPhoneNumber(e.target.value);
+    setPhoneValue(formattedPhoneNumber);
   }
 
   function handleAddressChange(e) {
@@ -36,8 +37,22 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
 
   }
 
+  function formatPhoneNumber(input) {
+    const digitsOnly = input.replace(/\D/g, ''); // Remove non-digit characters
+    let formattedPhoneNumber = '';
+  
+    for (let i = 0; i < digitsOnly.length; i++) {
+      if (i === 3 || i === 6) {
+        formattedPhoneNumber += '-';
+      }
+      formattedPhoneNumber += digitsOnly[i];
+    }
+  
+    return formattedPhoneNumber;
+  }
+
   return (
-    <Panel title={title} isActive={isActive} onShow={onShow} onClick={handleButtonClick}>
+    <Panel title={title} isActive={isActive} onShow={onShow} showSaveButton={true} onClick={handleButtonClick}>
       <form className="personal-info">
         <div className="name-input">
           <label htmlFor="name">Full name </label>
@@ -68,6 +83,7 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
             placeholder="123-456-7890"
             value={phoneValue}
             onChange={handlePhoneChange}
+            maxLength="12"
           />
           <br></br>
           <label htmlFor="address">Address </label>
@@ -84,6 +100,7 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
       {isSaved && (
         <p>Saved!</p>
       )}
+      <button onClick={handleButtonClick}>Save</button>
     </Panel>
   );
 }
