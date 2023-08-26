@@ -34,7 +34,19 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
     })
     setIsSaved(true);
     setTimeout(() => setIsSaved(false), 2000)
+  }
 
+  function clearPersonalData() {
+    setNameValue('');
+    setEmailValue('');
+    setPhoneValue('');
+    setAddressValue('');
+    setPersonalForm({
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+    })
   }
 
   function formatPhoneNumber(input) {
@@ -101,6 +113,7 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
         <p>Saved!</p>
       )}
       <button onClick={handleButtonClick}>Save</button>
+      <button onClick={clearPersonalData}>Clear</button>
     </Panel>
   );
 }

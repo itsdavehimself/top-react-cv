@@ -72,7 +72,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
 
   return (
     <Panel title={title} isActive={isActive} onShow={onShow}>
-      <button className="add-button" onClick={addEducation}>Add education</button>
+      <button className="add-button" onClick={addEducation}>Add education history</button>
       {isAddingEducation && (
         <form className="education">
         <div className="education-input">
@@ -155,6 +155,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
           {educationArr.map((educationItem, index) =>
           <div key={index}>
             {educationItem.school}
+            <button onClick={() => console.log('hi')}>Edit</button>
             <button onClick={() => deleteEducationArr(index)}>Delete</button>
           </div>)}
         </div>
