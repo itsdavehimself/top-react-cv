@@ -2,7 +2,8 @@ export default function Panel({
   title,
   children,
   isActive,
-  onShow
+  onShow,
+  onClick,
 }) {
   return (
     <section className="input-panel">
@@ -10,10 +11,11 @@ export default function Panel({
       {isActive ? (
         <>
         <div>{children}</div>
+        <button onClick={onClick}>Save</button>
         </>
       ) : (
         <button onClick={onShow}>
-          Show
+          Edit
         </button>
       )}
     </section>
