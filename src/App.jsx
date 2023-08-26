@@ -11,8 +11,28 @@ function App() {
     email: '',
     phone: '',
     address: '',
-  })
+  });
 
+  const [employmentForm, setEmploymentForm] = useState({
+    company: '',
+    position: '',
+    startDate: '',
+    endDate: '',
+    city: '',
+    description: '',
+  });
+
+  const [employmentArr, setEmploymentArr] = useState([]);
+
+  const addEmploymentArr = (employment) => {
+    setEmploymentArr([...employmentArr, employment]);
+  }
+
+  const deleteEmploymentArr = (index) => {
+    const updatedEmploymentArr = [...employmentArr];
+    updatedEmploymentArr.splice(index, 1);
+    setEmploymentArr(updatedEmploymentArr);
+  }
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -29,6 +49,11 @@ function App() {
           title = "Employment"
           isActive = {activeIndex === 1}
           onShow = {() => setActiveIndex(1)}
+          employmentForm={employmentForm}
+          setEmploymentForm={setEmploymentForm}
+          employmentArr={employmentArr}
+          addEmploymentArr={addEmploymentArr}
+          deleteEmploymentArr={deleteEmploymentArr}
         />
         <EducationPanel
           title = "Education"
@@ -37,7 +62,10 @@ function App() {
         />
       </div>
       <div className='cv-display'>
-        <DisplayCV personalForm={personalForm}/>
+        <DisplayCV
+        personalForm={personalForm}
+        employmentArr={employmentArr}
+        deleteEmploymentArr={deleteEmploymentArr}/>
       </div>
     </div>
   )
