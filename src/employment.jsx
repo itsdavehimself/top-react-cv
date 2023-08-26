@@ -63,8 +63,8 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
   }
 
   return (
-    <Panel title={title} isActive={isActive} onShow={onShow} showSaveButton={false}>
-      <button className="add-employment" onClick={addEmployment}>Add employment history</button>
+    <Panel title={title} isActive={isActive} onShow={onShow}>
+      <button className="add-button" onClick={addEmployment}>Add employment history</button>
       {isAddingEmployment && (
       <form className="employment">
       <div className="employment-input">
@@ -127,7 +127,7 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
     </form>
       )}
       {employmentArr.length > 0 && (
-        <div className="employment-tabs">
+        <div className="tabs">
           {employmentArr.map((employmentItem, index) =>
             <div key={index}>
               {employmentItem.company}

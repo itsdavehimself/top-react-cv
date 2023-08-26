@@ -1,4 +1,4 @@
-export default function DisplayCV({ personalForm, employmentArr }) {
+export default function DisplayCV({ personalForm, employmentArr, educationArr }) {
   return(
     <div className="cv">
       {personalForm.name}
@@ -23,9 +23,28 @@ export default function DisplayCV({ personalForm, employmentArr }) {
               {employmentItem.city}
               <br></br>
               {employmentItem.description}
+              <br></br>
             </div>
           )}
-
+      <br></br>
+      <br></br>
+      {educationArr.map((educationItem, index) =>
+            <div key={index}>
+              {educationItem.school}
+              <br></br>
+              {educationItem.degree}
+              <br></br>
+              {educationItem.startYear}
+              <br></br>
+              {educationItem.endYear}
+              <br></br>
+              {educationItem.city}
+              <br></br>
+              {educationItem.gpa}
+              <br></br>
+              {educationItem.achievements}
+            </div>
+          )}
     </div>
   )
 }

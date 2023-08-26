@@ -33,6 +33,29 @@ function App() {
     updatedEmploymentArr.splice(index, 1);
     setEmploymentArr(updatedEmploymentArr);
   }
+
+  const [educationArr, setEducationArr] = useState([]);
+
+  const [educationForm, setEducationForm] = useState({
+    school: '',
+    degree: '',
+    startYear: '',
+    endYear: '',
+    city: '',
+    gpa: '',
+    achievements: '',
+  })
+
+  const addEducationArr = (education) => {
+    setEducationArr([...educationArr, education]);
+  }
+
+  const deleteEducationArr = (index) => {
+    const updatedEducationArr = [...educationArr];
+    updatedEducationArr.splice(index, 1);
+    setEducationArr(updatedEducationArr);
+  }
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -59,12 +82,18 @@ function App() {
           title = "Education"
           isActive = {activeIndex === 2}
           onShow = {() => setActiveIndex(2)}
+          educationForm={educationForm}
+          setEducationForm={setEducationForm}
+          educationArr={educationArr}
+          addEducationArr={addEducationArr}
+          deleteEducationArr={deleteEducationArr}
         />
       </div>
       <div className='cv-display'>
         <DisplayCV
         personalForm={personalForm}
         employmentArr={employmentArr}
+        educationArr={educationArr}
         deleteEmploymentArr={deleteEmploymentArr}/>
       </div>
     </div>
