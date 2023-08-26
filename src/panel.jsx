@@ -11,7 +11,6 @@ export default function Panel({
       {isActive ? (
         <>
         <div>{children}</div>
-        <button onClick={onClick}>Save</button>
         </>
       ) : (
         <button onClick={onShow}>
