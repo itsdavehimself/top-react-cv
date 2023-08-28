@@ -80,7 +80,9 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
 
   return (
     <Panel title={title} isActive={isActive} onShow={onShow}>
-      <button className="add-button" onClick={addEducation}>Add education history</button>
+      {(!isAddingEducation && !isEditingEducation) && (
+      <button className="add-btn" onClick={addEducation}>+ Education</button>
+      )}
       {(isAddingEducation || isEditingEducation) && (
         <form className="education">
         <div className="education-input">

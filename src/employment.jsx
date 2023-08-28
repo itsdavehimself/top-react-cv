@@ -66,7 +66,9 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
 
   return (
     <Panel title={title} isActive={isActive} onShow={onShow}>
-      <button className="add-button" onClick={addEmployment}>Add employment history</button>
+      {(!isAddingEmployment && !isEditingEmployment) && (
+      <button className="add-btn" onClick={addEmployment}>+ Employment</button>
+      )}
       {(isAddingEmployment || isEditingEmployment) && (
       <form className="employment">
       <div className="employment-input">
