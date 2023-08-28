@@ -34,6 +34,12 @@ function App() {
     setEmploymentArr(updatedEmploymentArr);
   }
 
+  const saveEditedEmployment = (index, editedData) => {
+    const updatedEmploymentArr = [...employmentArr];
+    updatedEmploymentArr[index] = editedData;
+    setEmploymentArr(updatedEmploymentArr);
+  }
+
   const [educationArr, setEducationArr] = useState([]);
 
   const [educationForm, setEducationForm] = useState({
@@ -83,6 +89,7 @@ function App() {
           employmentArr={employmentArr}
           addEmploymentArr={addEmploymentArr}
           deleteEmploymentArr={deleteEmploymentArr}
+          saveEditedEmployment={saveEditedEmployment}
         />
         <EducationPanel
           title = "Education"

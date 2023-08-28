@@ -1,8 +1,10 @@
 import Panel from "./panel";
 import { useState } from "react";
 
-export default function EmploymentPanel({ title, isActive, onShow, employmentForm, setEmploymentForm, addEmploymentArr, employmentArr, deleteEmploymentArr }) {
+export default function EmploymentPanel({ title, isActive, onShow, employmentForm, setEmploymentForm, addEmploymentArr, employmentArr, deleteEmploymentArr, saveEditedEmployment }) {
   const [isAddingEmployment, setIsAddingEmployment] = useState(false);
+  const [isEditingEmployment, setIsEditingEmployment] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(null);
   const [companyValue, setCompanyValue] = useState('');
   const [positionValue, setPositionValue] = useState('');
   const [startDateValue, setStartDateValue] = useState('');
@@ -65,7 +67,7 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
   return (
     <Panel title={title} isActive={isActive} onShow={onShow}>
       <button className="add-button" onClick={addEmployment}>Add employment history</button>
-      {isAddingEmployment && (
+      {(isAddingEmployment || isEditingEmployment) && (
       <form className="employment">
       <div className="employment-input">
         <label htmlFor="company">Company name </label>
@@ -75,6 +77,7 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           name="company" 
           placeholder="The Coding Company"
           onChange={handleCompanyChange}
+          value={companyValue}
         />
         <br></br>
         <label htmlFor="position">Position title </label>
@@ -84,6 +87,7 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           name="position" 
           placeholder="Junior Web Developer"
           onChange={handlePositionChange}
+          value={positionValue}
         />
         <br></br>
         <label htmlFor="start-date">Start date </label>
@@ -93,6 +97,7 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           name="start-date" 
           placeholder="August 2020"
           onChange={handleStartDateChange}
+          value={startDateValue}
         />
         <br></br>
         <label htmlFor="end-date">End date </label>
@@ -102,6 +107,7 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           name="end-date" 
           placeholder="July 2023"
           onChange={handleEndDateChange}
+          value={endDateValue}
         />
         <br></br>
         <label htmlFor="company-city">City </label>
@@ -111,6 +117,7 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           name="company-city" 
           placeholder="Chicago, IL"
           onChange={handleCityChange}
+          value={cityValue}
         />
         <br></br>
         <label htmlFor="job-description">Job description </label>
@@ -120,10 +127,42 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           name="job-description" 
           placeholder="Enter position details"
           onChange={handleDescriptionChange} 
+          value={descriptionValue}
         />
       </div>
-      <button onClick={submitEmployment}>Add</button>
-      <button onClick={cancelAddEmployment}>Delete</button>
+      {isAddingEmployment && (
+        <>
+          <button onClick={submitEmployment}>Add</button>
+          <button onClick={cancelAddEmployment}>Cancel</button>
+        </>
+      )}
+      {isEditingEmployment && (
+        <>
+          <button type="button" onClick={() => {
+            const editedData = {
+              company: companyValue,
+              position: positionValue,
+              startDate: startDateValue,
+              endDate: endDateValue,
+              city: cityValue,
+              description: descriptionValue,
+            };
+            saveEditedEmployment(editingIndex, editedData);
+            setIsEditingEmployment(false);
+            setEditingIndex(null);
+          }}>Save changes</button>
+          <button type="button" onClick={() => {
+            setIsEditingEmployment(false);
+            setCompanyValue('');
+            setPositionValue('');
+            setStartDateValue('');
+            setEndDateValue('');
+            setCityValue('');
+            setDescriptionValue('');
+          }}>Cancel</button>
+        </>
+      )}
+      
     </form>
       )}
       {employmentArr.length > 0 && (
@@ -131,6 +170,18 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           {employmentArr.map((employmentItem, index) =>
             <div key={index}>
               {employmentItem.company}
+              <button onClick={() => {
+                setIsEditingEmployment(true);
+                setEditingIndex(index);
+                const employmentItem = employmentArr[index];
+                  setCompanyValue(employmentItem.company);
+                  setPositionValue(employmentItem.position);
+                  setStartDateValue(employmentItem.startDate);
+                  setEndDateValue(employmentItem.endDate);
+                  setCityValue(employmentItem.city);
+                  setDescriptionValue(employmentItem.description);
+
+              }}>Edit</button>
               <button onClick={() => deleteEmploymentArr(index)}>Delete</button>
             </div>
           )}
