@@ -13,6 +13,10 @@ function App() {
     address: '',
   });
 
+  const handlePersonalInfoChange = (newPersonalForm) => {
+    setPersonalForm(newPersonalForm);
+  };
+
   const [employmentForm, setEmploymentForm] = useState({
     company: '',
     position: '',
@@ -78,7 +82,7 @@ function App() {
           isActive = {activeIndex === 0}
           onShow = {() => setActiveIndex(0)}
           personalForm={personalForm}
-          setPersonalForm={setPersonalForm}
+          setPersonalForm={handlePersonalInfoChange}
         />
         <EmploymentPanel
           title = "Employment"

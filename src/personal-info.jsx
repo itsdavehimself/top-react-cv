@@ -6,23 +6,46 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
   const [emailValue, setEmailValue] = useState('');
   const [phoneValue, setPhoneValue] = useState('');
   const [addressValue, setAddressValue] = useState('');
-  const [isSaved, setIsSaved] = useState(false);
-
+  
   function handleFirstNameChange(e) {
-    setNameValue(e.target.value);
+    const updatedNameValue = e.target.value;
+    setNameValue(updatedNameValue);
+  
+    setPersonalForm(prevPersonalForm => ({
+      ...prevPersonalForm,
+      name: updatedNameValue
+    }));
   }
   
+  
   function handleEmailChange(e) {
-    setEmailValue(e.target.value);
+    const updatedEmailValue = e.target.value;
+    setEmailValue(updatedEmailValue);
+
+    setPersonalForm(prevPersonalForm => ({
+      ...prevPersonalForm,
+      email: updatedEmailValue
+    }))
   }
 
   function handlePhoneChange(e) {
     const formattedPhoneNumber = formatPhoneNumber(e.target.value);
     setPhoneValue(formattedPhoneNumber);
+
+    setPersonalForm(prevPersonalForm => ({
+      ...prevPersonalForm,
+      phone: formattedPhoneNumber
+    }))
   }
 
   function handleAddressChange(e) {
+    const updatedAddressValue = e.target.value;
     setAddressValue(e.target.value);
+
+    setPersonalForm(prevPersonalForm => ({
+      ...prevPersonalForm,
+      address: updatedAddressValue
+    }))
   }
 
   function handleButtonClick() {
@@ -32,8 +55,6 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
       phone: phoneValue,
       address: addressValue,
     })
-    setIsSaved(true);
-    setTimeout(() => setIsSaved(false), 2000)
   }
 
   function clearPersonalData() {
@@ -50,7 +71,7 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
   }
 
   function formatPhoneNumber(input) {
-    const digitsOnly = input.replace(/\D/g, ''); // Remove non-digit characters
+    const digitsOnly = input.replace(/\D/g, '');
     let formattedPhoneNumber = '';
   
     for (let i = 0; i < digitsOnly.length; i++) {
@@ -112,11 +133,7 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
           />
           </div>
       </form>
-      {isSaved && (
-        <p>Saved!</p>
-      )}
       <div className="btn-section">
-        <button className="main-btn save-btn" onClick={handleButtonClick}>Save</button>
         <button className="main-btn cancel-btn" onClick={clearPersonalData}>Clear</button>
       </div>
     </Panel>
