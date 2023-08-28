@@ -56,6 +56,12 @@ function App() {
     setEducationArr(updatedEducationArr);
   }
 
+  const saveEditedEducation = (index, editedData) => {
+    const updatedEducationArr = [...educationArr];
+    updatedEducationArr[index] = editedData;
+    setEducationArr(updatedEducationArr);
+  };
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -87,6 +93,7 @@ function App() {
           educationArr={educationArr}
           addEducationArr={addEducationArr}
           deleteEducationArr={deleteEducationArr}
+          saveEditedEducation={saveEditedEducation}
         />
       </div>
       <div className='cv-display'>

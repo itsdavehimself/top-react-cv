@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Panel from "./panel";
 
-export default function EducationPanel({ title, isActive, onShow, educationForm, setEducationForm, educationArr, addEducationArr, deleteEducationArr }) {
+export default function EducationPanel({ title, isActive, onShow, educationForm, setEducationForm, educationArr, addEducationArr, deleteEducationArr, saveEditedEducation }) {
   const [isAddingEducation, setIsAddingEducation] = useState(false);
+  const [isEditingEducation, setIsEditingEducation] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(null);
   const [schoolValue, setSchoolValue] = useState('');
   const [degreeValue, setDegreeValue] = useState('');
   const [startYearValue, setStartYearValue] = useState('');
@@ -38,10 +40,16 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
   function handleAchievementsChange(e) {
     setAchievementsValue(e.target.value)
   }
-  
 
   function addEducation() {
     setIsAddingEducation(true);
+    setSchoolValue('');
+    setDegreeValue('');
+    setStartYearValue('');
+    setEndYearValue('');
+    setCityValue('');
+    setGPAValue('');
+    setAchievementsValue('');
   }
 
   function submitEducation() {
@@ -72,8 +80,8 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
 
   return (
     <Panel title={title} isActive={isActive} onShow={onShow}>
-      <button className="add-button" onClick={addEducation}>Add education history</button>
-      {isAddingEducation && (
+      <button className="add-button" onClick={addEducation}>Add education</button>
+      {(isAddingEducation || isEditingEducation) && (
         <form className="education">
         <div className="education-input">
           <label htmlFor="school">School </label>
@@ -83,6 +91,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             name="school" 
             placeholder="University of Chicago"
             onChange={handleSchoolChange}
+            value={schoolValue}
           />
           <br></br>
           <label htmlFor="degree">Degree </label>
@@ -92,6 +101,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             name="degree" 
             placeholder="B.S. Computer Science"
             onChange={handleDegreeChange}
+            value={degreeValue}
           />
           <br></br>
           <label htmlFor="start-year">Start year </label>
@@ -103,6 +113,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             min="1900" 
             max="2030"
             onChange={handleStartYearChange}
+            value={startYearValue}
           />
           <br></br>
           <label htmlFor="end-year">End year </label>
@@ -114,6 +125,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             min="1900" 
             max="2030"
             onChange={handleEndYearChange}
+            value={endYearValue}
           />
           <br></br>
           <label htmlFor="school-city">City </label>
@@ -123,6 +135,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             name="school-city" 
             placeholder="Chicago, IL"
             onChange={handleCityChange}
+            value={cityValue}
           />
           <br></br>
           <label htmlFor="gpa">GPA </label>
@@ -135,6 +148,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             min="0" 
             max="4"
             onChangeCapture={handleGPAChange}
+            value={GPAValue}
           />
           <br></br>
           <label htmlFor="additional-achievement">Additional achievements </label>
@@ -144,10 +158,38 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             name="additional-achievement" 
             placeholder="Presidential Scholarship" 
             onChange={handleAchievementsChange}
+            value={achievementsValue}
           />
         </div>
-        <button onClick={submitEducation}>Add</button>
-        <button onClick={cancelAddEducation}>Delete</button>
+        {isAddingEducation && (
+          <>
+            <button onClick={submitEducation}>Add</button>
+            <button onClick={cancelAddEducation}>Delete</button>
+          </>
+        )}
+        {isEditingEducation && (
+          <>
+            <button type="button" onClick={() => {
+              const editedData = {
+                school: schoolValue,
+                degree: degreeValue,
+                startYear: startYearValue,
+                endYear: endYearValue,
+                city: cityValue,
+                gpa: GPAValue,
+                achievements: achievementsValue,
+              };
+              saveEditedEducation(editingIndex, editedData);
+              setIsEditingEducation(false);
+              setEditingIndex(null);
+              }}>Save changes</button>
+            <button type="button" onClick={() => {
+              deleteEducationArr(editingIndex);
+              setIsEditingEducation(false);
+            }}>Delete</button>
+          </>
+        )}
+
       </form>
       )}
       {educationArr.length > 0 && (
@@ -155,7 +197,18 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
           {educationArr.map((educationItem, index) =>
           <div key={index}>
             {educationItem.school}
-            <button onClick={() => console.log('hi')}>Edit</button>
+            <button onClick={() => {
+              setIsEditingEducation(true);
+              setEditingIndex(index);
+              const educationItem = educationArr[index];
+                setSchoolValue(educationItem.school);
+                setDegreeValue(educationItem.degree);
+                setStartYearValue(educationItem.startYear);
+                setEndYearValue(educationItem.endYear);
+                setCityValue(educationItem.city);
+                setGPAValue(educationItem.gpa);
+                setAchievementsValue(educationItem.achievements);
+            }}>Edit</button>
             <button onClick={() => deleteEducationArr(index)}>Delete</button>
           </div>)}
         </div>
