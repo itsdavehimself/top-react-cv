@@ -80,7 +80,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
 
   return (
     <Panel title={title} isActive={isActive} onShow={onShow}>
-      <button className="add-button" onClick={addEducation}>Add education</button>
+      <button className="add-button" onClick={addEducation}>Add education history</button>
       {(isAddingEducation || isEditingEducation) && (
         <form className="education">
         <div className="education-input">
@@ -164,7 +164,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
         {isAddingEducation && (
           <>
             <button onClick={submitEducation}>Add</button>
-            <button onClick={cancelAddEducation}>Delete</button>
+            <button onClick={cancelAddEducation}>Cancel</button>
           </>
         )}
         {isEditingEducation && (
@@ -184,9 +184,15 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
               setEditingIndex(null);
               }}>Save changes</button>
             <button type="button" onClick={() => {
-              deleteEducationArr(editingIndex);
               setIsEditingEducation(false);
-            }}>Delete</button>
+              setSchoolValue('');
+              setDegreeValue('');
+              setStartYearValue('');
+              setEndYearValue('');
+              setCityValue('');
+              setGPAValue('');
+              setAchievementsValue('');
+            }}>Cancel</button>
           </>
         )}
 
