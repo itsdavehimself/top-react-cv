@@ -66,7 +66,7 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
   return (
     <Panel title={title} isActive={isActive} onShow={onShow} showSaveButton={true} onClick={handleButtonClick}>
       <form className="personal-info">
-        <div className="name-input">
+          <div className="input-group">
           <label htmlFor="name">Full name </label>
           <input 
             type="text" 
@@ -76,7 +76,8 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
             value={nameValue}
             onChange={handleFirstNameChange}
           />
-          <br></br>
+          </div>
+          <div className="input-group">
           <label htmlFor="email">Email </label>
           <input 
             type="email" 
@@ -86,7 +87,8 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
             value={emailValue}
             onChange={handleEmailChange}
           />
-          <br></br>
+          </div>
+          <div className="input-group">
           <label htmlFor="phone-number">Phone number </label>
           <input 
             type="tel" 
@@ -97,7 +99,8 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
             onChange={handlePhoneChange}
             maxLength="12"
           />
-          <br></br>
+          </div>
+          <div className="input-group">
           <label htmlFor="address">Address </label>
           <input 
             type="text" 
@@ -107,13 +110,15 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
             value={addressValue}
             onChange={handleAddressChange}
           />
-        </div>
+          </div>
       </form>
       {isSaved && (
         <p>Saved!</p>
       )}
-      <button onClick={handleButtonClick}>Save</button>
-      <button onClick={clearPersonalData}>Clear</button>
+      <div className="btn-section">
+        <button className="main-btn save-btn" onClick={handleButtonClick}>Save</button>
+        <button className="main-btn cancel-btn" onClick={clearPersonalData}>Clear</button>
+      </div>
     </Panel>
   );
 }
