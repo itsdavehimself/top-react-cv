@@ -85,7 +85,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
       )}
       {(isAddingEducation || isEditingEducation) && (
         <form className="education">
-        <div className="education-input">
+          <div className="input-group">
           <label htmlFor="school">School </label>
           <input 
             type="text" 
@@ -95,7 +95,8 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             onChange={handleSchoolChange}
             value={schoolValue}
           />
-          <br></br>
+          </div>
+          <div className="input-group">
           <label htmlFor="degree">Degree </label>
           <input 
             type="text" 
@@ -105,7 +106,8 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             onChange={handleDegreeChange}
             value={degreeValue}
           />
-          <br></br>
+          </div>
+          <div className="input-group">
           <label htmlFor="start-year">Start year </label>
           <input 
             type="number" 
@@ -117,7 +119,8 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             onChange={handleStartYearChange}
             value={startYearValue}
           />
-          <br></br>
+          </div>
+          <div className="input-group">
           <label htmlFor="end-year">End year </label>
           <input 
             type="number" 
@@ -129,7 +132,8 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             onChange={handleEndYearChange}
             value={endYearValue}
           />
-          <br></br>
+          </div>
+          <div className="input-group">
           <label htmlFor="school-city">City </label>
           <input 
             type="text" 
@@ -139,7 +143,8 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             onChange={handleCityChange}
             value={cityValue}
           />
-          <br></br>
+          </div>
+          <div className="input-group">
           <label htmlFor="gpa">GPA </label>
           <input 
             type="number" 
@@ -152,7 +157,8 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             onChangeCapture={handleGPAChange}
             value={GPAValue}
           />
-          <br></br>
+          </div>
+          <div className="input-group">
           <label htmlFor="additional-achievement">Additional achievements </label>
           <input 
             type="text" 
@@ -162,11 +168,13 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
             onChange={handleAchievementsChange}
             value={achievementsValue}
           />
-        </div>
+          </div>
         {isAddingEducation && (
           <>
-            <button onClick={submitEducation}>Add</button>
-            <button onClick={cancelAddEducation}>Cancel</button>
+          <div className="btn-section">
+            <button className="main-btn save-btn" onClick={submitEducation}>Add</button>
+            <button className="main-btn" onClick={cancelAddEducation}>Cancel</button>
+          </div>
           </>
         )}
         {isEditingEducation && (

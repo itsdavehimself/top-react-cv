@@ -71,7 +71,7 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
       )}
       {(isAddingEmployment || isEditingEmployment) && (
       <form className="employment">
-      <div className="employment-input">
+        <div className="input-group">
         <label htmlFor="company">Company name </label>
         <input 
           type="text" 
@@ -81,7 +81,8 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           onChange={handleCompanyChange}
           value={companyValue}
         />
-        <br></br>
+        </div>
+        <div className="input-group">
         <label htmlFor="position">Position title </label>
         <input 
           type="text" 
@@ -91,7 +92,8 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           onChange={handlePositionChange}
           value={positionValue}
         />
-        <br></br>
+        </div>
+        <div className="input-group">
         <label htmlFor="start-date">Start date </label>
         <input 
           type="text" 
@@ -101,7 +103,8 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           onChange={handleStartDateChange}
           value={startDateValue}
         />
-        <br></br>
+        </div>
+        <div className="input-group">
         <label htmlFor="end-date">End date </label>
         <input 
           type="text" 
@@ -111,8 +114,9 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           onChange={handleEndDateChange}
           value={endDateValue}
         />
-        <br></br>
-        <label htmlFor="company-city">City </label>
+        </div>
+        <div className="input-group">
+          <label htmlFor="company-city">City </label>
         <input 
           type="text" 
           id="company-city" 
@@ -121,7 +125,8 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           onChange={handleCityChange}
           value={cityValue}
         />
-        <br></br>
+        </div>
+        <div className="input-group">
         <label htmlFor="job-description">Job description </label>
         <input 
           type="text" 
@@ -131,11 +136,13 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
           onChange={handleDescriptionChange} 
           value={descriptionValue}
         />
-      </div>
+        </div>
       {isAddingEmployment && (
         <>
-          <button onClick={submitEmployment}>Add</button>
-          <button onClick={cancelAddEmployment}>Cancel</button>
+        <div className="btn-section">
+          <button className="main-btn save-btn" onClick={submitEmployment}>Add</button>
+          <button className="main-btn" onClick={cancelAddEmployment}>Cancel</button>
+        </div>
         </>
       )}
       {isEditingEmployment && (
