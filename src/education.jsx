@@ -178,8 +178,8 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
           </>
         )}
         {isEditingEducation && (
-          <>
-            <button type="button" onClick={() => {
+          <div className="btn-section">
+            <button className="main-btn save-btn" type="button" onClick={() => {
               const editedData = {
                 school: schoolValue,
                 degree: degreeValue,
@@ -192,8 +192,8 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
               saveEditedEducation(editingIndex, editedData);
               setIsEditingEducation(false);
               setEditingIndex(null);
-              }}>Save changes</button>
-            <button type="button" onClick={() => {
+              }}>Save</button>
+            <button className="main-btn" type="button" onClick={() => {
               setIsEditingEducation(false);
               setSchoolValue('');
               setDegreeValue('');
@@ -203,7 +203,7 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
               setGPAValue('');
               setAchievementsValue('');
             }}>Cancel</button>
-          </>
+          </div>
         )}
 
       </form>
@@ -211,9 +211,12 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
       {educationArr.length > 0 && (
         <div className="tabs">
           {educationArr.map((educationItem, index) =>
-          <div key={index}>
+          <div className="tab" key={index}>
+            <div className="tab-info">
             {educationItem.school}
-            <button onClick={() => {
+            </div>
+            <div className="tab-btns">
+            <button className="main-btn" onClick={() => {
               setIsEditingEducation(true);
               setEditingIndex(index);
               const educationItem = educationArr[index];
@@ -225,7 +228,8 @@ export default function EducationPanel({ title, isActive, onShow, educationForm,
                 setGPAValue(educationItem.gpa);
                 setAchievementsValue(educationItem.achievements);
             }}>Edit</button>
-            <button onClick={() => deleteEducationArr(index)}>Delete</button>
+            <button className="main-btn delete-btn" onClick={() => deleteEducationArr(index)}>Delete</button>
+            </div>
           </div>)}
         </div>
       )}

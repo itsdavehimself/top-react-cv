@@ -146,8 +146,8 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
         </>
       )}
       {isEditingEmployment && (
-        <>
-          <button type="button" onClick={() => {
+        <div className="btn-section">
+          <button className="main-btn save-btn" type="button" onClick={() => {
             const editedData = {
               company: companyValue,
               position: positionValue,
@@ -159,8 +159,8 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
             saveEditedEmployment(editingIndex, editedData);
             setIsEditingEmployment(false);
             setEditingIndex(null);
-          }}>Save changes</button>
-          <button type="button" onClick={() => {
+          }}>Save</button>
+          <button className="main-btn" type="button" onClick={() => {
             setIsEditingEmployment(false);
             setCompanyValue('');
             setPositionValue('');
@@ -169,7 +169,7 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
             setCityValue('');
             setDescriptionValue('');
           }}>Cancel</button>
-        </>
+        </div>
       )}
       
     </form>
@@ -177,9 +177,12 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
       {employmentArr.length > 0 && (
         <div className="tabs">
           {employmentArr.map((employmentItem, index) =>
-            <div key={index}>
+            <div className="tab" key={index}>
+              <div className="tab-info">
               {employmentItem.company}
-              <button onClick={() => {
+              </div>
+              <div className="tab-btns">
+              <button className="main-btn" onClick={() => {
                 setIsEditingEmployment(true);
                 setEditingIndex(index);
                 const employmentItem = employmentArr[index];
@@ -191,7 +194,8 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
                   setDescriptionValue(employmentItem.description);
 
               }}>Edit</button>
-              <button onClick={() => deleteEmploymentArr(index)}>Delete</button>
+              <button className="main-btn delete-btn" onClick={() => deleteEmploymentArr(index)}>Delete</button>
+              </div>
             </div>
           )}
         </div>
