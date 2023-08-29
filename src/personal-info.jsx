@@ -122,12 +122,12 @@ export default function PersonalInfoPanel({ title, isActive, onShow, personalFor
           />
           </div>
           <div className="input-group">
-          <label htmlFor="address">Address </label>
+          <label htmlFor="address">City & State </label>
           <input 
             type="text" 
             id="address" 
             name="address" 
-            placeholder="123 Main St. Chicago, IL 60007"
+            placeholder="Chicago, IL"
             value={addressValue}
             onChange={handleAddressChange}
           />
