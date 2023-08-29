@@ -37,6 +37,12 @@ export default function EmploymentPanel({ title, isActive, onShow, employmentFor
   }
 
   function addEmployment() {
+    setCompanyValue('');
+    setPositionValue('');
+    setStartDateValue('');
+    setEndDateValue('');
+    setCityValue('');
+    setDescriptionValue('');
     setIsAddingEmployment(true);
   }
 

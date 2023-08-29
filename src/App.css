@@ -6,6 +6,13 @@
 }
 
 @font-face {
+  font-family: 'Robot';
+  src: url(./fonts/Roboto-ThinItalic.ttf);
+  font-weith: 400;
+  font-style: italic;
+}
+
+@font-face {
   font-family: 'Roboto';
   src: url(./fonts/Roboto-Thin.ttf);
   font-weight: 100;

@@ -1,0 +1,80 @@
+.cv-personal {
+  display: grid;
+  grid-template-rows: 1.5fr 1fr;
+  justify-content: center;
+  background-color: #4F6272;
+  color: #fff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  height: 112px
+}
+
+.cv-name {
+  align-self: self-end;
+  justify-self: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.cv-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  font-size: .9rem;
+}
+
+.employment-section {
+  display: grid;
+}
+
+.history-header {
+  display: grid;
+  font-size: 1.25rem;
+  font-weight: 700;
+  background-color: #efefef;
+  justify-content: center;
+  margin: 28px;
+}
+
+.secondary-info {
+  font-style: italic;
+}
+
+.cv-city {
+  font-style: italic
+}
+
+.history-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  margin: 0 28px 12px 28px;
+  font-size: .8rem;
+}
+
+.left-section {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 4px;
+  margin-right: 18px;
+}
+
+.right-section {
+  display: grid;
+  grid-template-rows: auto;
+  gap: 4px
+}
+
+.institution-title {
+  font-weight: 700;
+}
+
+.left-section.education {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 4px;
+  margin-right: 18px;
+  width: 86px;
+}
