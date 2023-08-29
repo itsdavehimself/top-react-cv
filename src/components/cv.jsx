@@ -1,4 +1,4 @@
-import './cv.css'
+import '/src/styles/cv.css'
 import React, { useRef, useEffect } from "react";
 
 

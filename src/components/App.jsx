@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import DisplayCV from './cv'
-import PersonalInfoPanel from "./personal-info";
-import EmploymentPanel from "./employment";
-import EducationPanel from "./education";
-import './App.css'
+import DisplayCV from '/src/components/cv'
+import PersonalInfoPanel from "/src/components/personal-info";
+import EmploymentPanel from "/src/components/employment";
+import EducationPanel from "/src/components/education";
+import '/src/styles/App.css'
 
 function App() {
   const [personalForm, setPersonalForm] = useState({
